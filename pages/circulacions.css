@@ -45,9 +45,11 @@ body {
 .pantalla { 
     box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
     border: 3px solid black;
-    width: 100%;
+    min-width: 115rem;
+    max-width: 115rem;
     height: 45.5rem;
     background-color: rgba(218, 240, 184, 0.87);  
+    position: relative;
 }
 
 .primera_linea {
