@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantalla de Circulacions</title>
+    <link rel="stylesheet" href="circulacions.css">
+</head>
+<body>
+    <!-- Barra superior -->
+    <div class="barra-superior">
+        <a href="/index.html" class="btn-inicio">Inicio</a>
+    </div>
+
+    <!-- Contenido de la pantalla de circulacions -->
+    <div class="contenido">
+        <div class="pantalla">
+            <div class="primera_linea">
+                <div class="hora" id="hora"></div>
+                <div class="titol_sortides">Salidas | <b>&nbsp;Sortides&nbsp;</b> | NEXT DEPARTURES</div>
+                <div class="logo_adif">
+                    <img src="/img/logo_adif.png" alt="Logo de ADIF" class="logo_adif_img">
+                </div>
+            </div>
+            <div class="segona_linea">
+                <div class="hora_titol">Hora<br><b>Hora</b><br><span class="ingles">TIME</span></div>
+                <div class="desti_titol">Destino<br><b>Destinació</b><br><span class="ingles">DESTINATION</span></div>
+                <div class="tren_titol">Tren<br><b>Tren</b><br><span class="ingles">TRAIN</span></div>
+                <div class="numero_titol">Número<br><b>Número</b><br><span class="ingles">NUMBER</span></div>
+                <div class="via_titol">Vía<br><b>Via</b><br><span class="ingles">PLATFORM</span></div>
+                <div class="observacions_titol">Observaciones<br><b>Observacions</b><br><span class="ingles">OBSERVATIONS</span></div>
+
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Barra inferior de contacto -->
+    <div class="contacte">
+        <ul>
+            <li><a href="https://x.com/AleixRaubert">Twitter</a></li>
+            <li><a href="https://www.instagram.com/raauuu.aleix/?hl=es">Instagram</a></li>
+            <li><a href="https://github.com/aleixraubert">GitHub</a></li>
+        </ul>
+    </div>
+
+    <script>
+        function actualizarHora() {
+            const ahora = new Date();
+            const horas = String(ahora.getHours()).padStart(2, '0');
+            const minutos = String(ahora.getMinutes()).padStart(2, '0');
+            const horaFormateada = `${horas}:${minutos}`;
+            document.getElementById('hora').textContent = horaFormateada;
+        }
+
+        // Actualiza la hora cada segundo
+        setInterval(actualizarHora, 1000);
+
+        // Actualiza la hora inmediatamente al cargar la página
+        actualizarHora();
+    </script>
+</body>
+</html>
