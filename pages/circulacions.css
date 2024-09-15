@@ -11,25 +11,20 @@ body {
 
 /* Barra superior */
 .barra-superior {
-    background-color: #333;
-    padding: 10px 0;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
+    background-color: #2c3e50;
+    padding: 10px 20px;
+    color: white;
+    text-align: left;
 }
 
-.barra-superior .btn-inicio {
+.barra-superior a {
     color: white;
     text-decoration: none;
-    font-size: 18px;
-    padding: 5px 10px;
-    margin-left: 1rem;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    font-weight: bold;
 }
 
-.barra-superior .btn-inicio:hover {
-    background-color: #ff8800;
+.barra-superior a:hover {
+    text-decoration: underline;
 }
 
 /* Contenido de la pantalla de circulacions */
@@ -47,7 +42,7 @@ body {
     border: 3px solid black;
     min-width: 115rem;
     max-width: 115rem;
-    height: 45.5rem;
+    height: 45.6rem;
     background-color: rgba(218, 240, 184, 0.87);  
     position: relative;
 }
@@ -145,18 +140,26 @@ body {
     width:fit-content;
 }
 
+/* Modificaciones para truncar el contenido largo */
 .desti {
     font-size: 60px;
     font-weight: 600;
     padding: 0.5rem;
     color:#000000;
     display: flex;
-    width:50rem;
+    width:49rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .tren {
+    margin-left:1rem;
     padding: 0.5rem 0.5rem 0.5rem 0rem;
     width: 20rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .logo_linea {
@@ -173,7 +176,10 @@ body {
     align-self: center;
     justify-self: center;
     width:10rem;
-    font-weight: 600;;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .via {
@@ -184,20 +190,33 @@ body {
     justify-content: right;
     align-content: right;
     margin-right: 1.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .observacions {
     font-size: 25px;
     padding: 0.5rem;
-    color:#f80000;
+    color: #f80000;
     justify-self: center;
     align-self: center;
+    white-space: nowrap; /* Mantener todo el texto en una línea */
+    overflow: hidden; /* Ocultar el texto que no cabe */
+    text-overflow: ellipsis; /* Mostrar puntos suspensivos si el texto es demasiado largo */
+    width: 10rem; /* Ancho fijo para que no crezca o se reduzca */
+    flex-shrink: 0; /* Evitar que el contenedor se reduzca */
+    max-width: 10rem; /* Limitar el tamaño máximo */
+    min-width: 10rem; /* Limitar el tamaño mínimo */
 }
+
 /* Barra de contactos fija en la parte inferior */
 .contacte {
-    background-color: #333;
+    background-color: #2c3e50;
     padding: 10px 0;
     text-align: center;
+    color: white;
+    position: fixed;
     bottom: 0;
     width: 100%;
 }
@@ -206,28 +225,24 @@ body {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    justify-content: center;
 }
 
-.contacte li {
-    display: inline-block;
+.contacte ul li {
+    display: inline;
     margin: 0 15px;
 }
 
-.contacte li a {
-    text-decoration: none;
+.contacte ul li a {
     color: white;
-    font-size: 18px;
-    padding: 5px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    text-decoration: none;
+    font-size: 14px;
 }
 
-.contacte li a:hover {
-    background-color: #00eeff;
+.contacte ul li a:hover {
+    text-decoration: underline;
 }
 
 .ingles {
     font-size: smaller;
 }
+

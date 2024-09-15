@@ -3,9 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agefir_Circulacions</title>
+    <title>Formulari de Circulacions</title>
+    <link rel="stylesheet" href="formulario.css">
 </head>
 <body>
-    
+    <!-- Barra superior -->
+    <div class="barra-superior">
+        <a href="/index.html" class="btn-inicio">Inicio</a>
+    </div>
+
+    <!-- Formulario para añadir una nueva circulación -->
+    <div class="contenido">
+        <h1>Añadir Circulación</h1>
+        <form id="form-circulacion">
+            <label for="hora">Hora:</label>
+            <input type="time" id="hora" name="hora" required><br>
+
+            <label for="destino">Destino:</label>
+            <input type="text" id="destino" name="destino" required><br>
+
+            <label for="linea">Línea (R1, R2, R3, R4, ...):</label>
+            <select id="linea">
+                <option value="selecciona">Selecciona una línea...</option>
+                <option value="R1">R1</option>
+                <option value="R2">R2</option>
+                <option value="R2_nord">R2Nord</option>
+                <option value="R2_sud">R2Sud</option>
+                <option value="R3">R3</option>
+                <option value="R4">R4</option>
+                <option value="R7">R7</option>
+                <option value="R8">R8</option>
+                <option value="R11">R11</option>
+                <option value="R12">R12</option>
+                <option value="R13">R13</option>
+                <option value="R14">R14</option>
+                <option value="R15">R15</option>
+                <option value="R16">R16</option>
+                <option value="R17">R17</option>
+                <option value="RT1">RT1</option>
+                <option value="RT2">RT2</option>
+                <option value="RL3">RL3</option>
+                <option value="RG1">RG1</option>
+            </select><br>
+
+            <label for="numero">Número de Tren:</label>
+            <input type="number" id="numero" name="numero" required><br>
+
+            <label for="via">Vía:</label>
+            <input type="number" id="via" name="via" required><br>
+
+            <label for="observaciones">Observaciones:</label>
+            <input type="text" id="observaciones" name="observaciones"><br>
+
+            <button type="submit">Añadir Circulación</button>
+        </form>
+        <br>
+        <form id="borrar_circulaciones">
+            <button type="submit">Borrar Circulaciones</button>
+        </form>
+    </div>
+
+    <!-- Barra inferior de contacto -->
+    <div class="contacte">
+        <ul>
+            <li><a href="https://x.com/AleixRaubert">Twitter</a></li>
+            <li><a href="https://www.instagram.com/raauuu.aleix/?hl=es">Instagram</a></li>
+            <li><a href="https://github.com/aleixraubert">GitHub</a></li>
+        </ul>
+    </div>
+
+    <script>
+        // Función para manejar el formulario y guardar la nueva circulación
+        document.getElementById('form-circulacion').addEventListener('submit', function(e) {
+            e.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
+
+            const nuevaCirculacion = {
+                hora: document.getElementById('hora').value,
+                destino: document.getElementById('destino').value,
+                linea: document.getElementById('linea').value,
+                numero: document.getElementById('numero').value,
+                via: document.getElementById('via').value,
+                observaciones: document.getElementById('observaciones').value
+            };
+
+            if (nuevaCirculacion.numero < 1 || nuevaCirculacion.numero > 99999){
+                nuevaCirculacion.numero = 1;
+            }
+
+            if(nuevaCirculacion.via < 1 || nuevaCirculacion.via > 99){
+                nuevaCirculacion.via = 1;
+            }
+
+            // Obtener las circulaciones almacenadas en localStorage o iniciar con un array vacío
+            let circulaciones = JSON.parse(localStorage.getItem('circulaciones')) || [];
+            
+            // Verificar si ya se han añadido 7 circulaciones
+            if (circulaciones.length >= 7) {
+                alert('Ya se han añadido 7 circulaciones. No puedes añadir más.');
+                return;
+            }
+
+            
+
+            // Verificar que se haya seleccionado una línea válida
+            const lineaSeleccionada = document.getElementById('linea').value;
+            if (lineaSeleccionada === "selecciona") {
+                alert('Por favor, selecciona una línea válida.');
+                return;
+            }
+
+            // Añadir la nueva circulación al array
+            circulaciones.push(nuevaCirculacion);
+
+            // Guardar el array actualizado en localStorage
+            localStorage.setItem('circulaciones', JSON.stringify(circulaciones));
+
+            // Limpiar el formulario después de añadir
+            this.reset();
+            alert('Circulación añadida exitosamente');
+        });
+
+        // Función para borrar todas las circulaciones
+        document.getElementById('borrar_circulaciones').addEventListener('submit', function(e) {
+            e.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
+
+            // Borrar todas las circulaciones de localStorage
+            localStorage.removeItem('circulaciones');
+
+            alert('Circulaciones borradas exitosamente');
+        });
+    </script>
 </body>
 </html>
